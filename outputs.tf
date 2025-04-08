@@ -9,7 +9,7 @@ output "openai_key_secret_url" {
 }
 
 output "openai_endpoint" {
-  description = "https url that contains the openai api key secret in the key vault."
+  description = "The endpoint of the OpenAI deployment."
   value       = module.openai.endpoint
 }
 

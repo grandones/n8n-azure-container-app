@@ -17,9 +17,9 @@ This repository was created to provide a more affordable and accessible way to h
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.6 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4, < 5.0.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.7 |
 
 ## Providers
 
@@ -55,7 +55,7 @@ This repository was created to provide a more affordable and accessible way to h
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry) | This variable controls whether or not telemetry is enabled for the module.<br/>For more information see https://aka.ms/avm/telemetryinfo.<br/>If it is set to false, then no telemetry will be collected. | `bool` | `false` | no |
-| <a name="input_location"></a> [location](#input\_location) | Azure region where the resource should be deployed.<br/>If null, the location will be inferred from the resource group location. | `string` | `"eastus"` | no |
+| <a name="input_location"></a> [location](#input\_location) | Azure region where the resource should be deployed.<br/>If null, the location will be inferred from the resource group location. | `string` | `"eastu2"` | no |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Azure Subscription ID | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Custom tags to apply to the resource. | `map(string)` | `null` | no |
 
@@ -66,7 +66,7 @@ This repository was created to provide a more affordable and accessible way to h
 | <a name="output_n8n_fqdn_url"></a> [n8n\_fqdn\_url](#output\_n8n\_fqdn\_url) | https url that contains ingress's fqdn, could be used to access the n8n app. |
 | <a name="output_openai_api_version"></a> [openai\_api\_version](#output\_openai\_api\_version) | The version of the OpenAI API to n8n credential. See https://learn.microsoft.com/en-us/azure/ai-services/openai/api-version-deprecation |
 | <a name="output_openai_deployment_name"></a> [openai\_deployment\_name](#output\_openai\_deployment\_name) | The name of the OpenAI deployment. |
-| <a name="output_openai_endpoint"></a> [openai\_endpoint](#output\_openai\_endpoint) | https url that contains the openai api key secret in the key vault. |
+| <a name="output_openai_endpoint"></a> [openai\_endpoint](#output\_openai\_endpoint) | The endpoint of the OpenAI deployment. |
 | <a name="output_openai_key_secret_url"></a> [openai\_key\_secret\_url](#output\_openai\_key\_secret\_url) | https url that contains the openai key secret in the key vault. |
 | <a name="output_openai_resource_name"></a> [openai\_resource\_name](#output\_openai\_resource\_name) | The name of the OpenAI deployment. |
 <!-- END_TF_DOCS -->
