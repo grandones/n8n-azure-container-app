@@ -1,7 +1,7 @@
 # n8n-azure-container-app
 
 This Terraform configuration deploys an **n8n** instance on **Azure Container Apps**, along with an **Azure OpenAI Service** instance configured with the **GPT-4o-mini** model. By leveraging Azure Container Apps, this setup provides a cost-effective alternative to deploying n8n on Azure Kubernetes Service (AKS), as described on the n8n [website](https://docs.n8n.io/hosting/installation/server-setups/azure/). Azure Container Apps simplify the deployment process while maintaining scalability and reducing operational overhead.
-
+ 
 ### Key Features:
 - **n8n Workflow Automation**: Deploys n8n, a powerful workflow automation tool, in a highly available and scalable environment using Azure Container Apps.
 - **Azure OpenAI Integration**: Provisions an Azure OpenAI Service instance with the GPT-4o-mini model, enabling advanced AI capabilities for your workflows.
