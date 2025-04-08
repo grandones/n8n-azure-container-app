@@ -1,1 +1,72 @@
 # n8n-azure-container-app
+
+This Terraform configuration deploys an **n8n** instance on **Azure Container Apps**, along with an **Azure OpenAI Service** instance configured with the **GPT-4o-mini** model. By leveraging Azure Container Apps, this setup provides a cost-effective alternative to deploying n8n on Azure Kubernetes Service (AKS), as described on the n8n [website](https://docs.n8n.io/hosting/installation/server-setups/azure/). Azure Container Apps simplify the deployment process while maintaining scalability and reducing operational overhead.
+
+### Key Features:
+- **n8n Workflow Automation**: Deploys n8n, a powerful workflow automation tool, in a highly available and scalable environment using Azure Container Apps.
+- **Azure OpenAI Integration**: Provisions an Azure OpenAI Service instance with the GPT-4o-mini model, enabling advanced AI capabilities for your workflows.
+- **Cost Optimization**: Utilizes Azure Container Apps to minimize costs compared to AKS, making it an ideal choice for small to medium-scale deployments.
+- **Secure Configuration**: Integrates with Azure Key Vault to securely manage sensitive information, such as API keys and secrets.
+- **Customizable Deployment**: Supports flexible configuration options for region, tags, and telemetry, allowing you to tailor the deployment to your specific needs.
+- **Azure Verified Modules**: Leverages Azure Verified Modules (AVMs) to ensure the use of well-defined, tested, and Microsoft-supported modules, enhancing reliability and maintainability.
+
+This repository was created to provide a more affordable and accessible way to host n8n in the Azure cloud, as the AKS-based solution was found to be expensive for smaller-scale use cases. This configuration offers a practical alternative, combining the power of n8n and Azure OpenAI with the cost-efficiency and simplicity of Azure Container Apps.
+
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.6 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4, < 5.0.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.26.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.7.1 |
+
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_container_app"></a> [container\_app](#module\_container\_app) | Azure/avm-res-app-containerapp/azurerm | 0.4.0 |
+| <a name="module_key_vault"></a> [key\_vault](#module\_key\_vault) | Azure/avm-res-keyvault-vault/azurerm | 0.10.0 |
+| <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | 0.4.0 |
+| <a name="module_openai"></a> [openai](#module\_openai) | Azure/avm-res-cognitiveservices-account/azurerm | 0.7.0 |
+| <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | Azure/avm-res-dbforpostgresql-flexibleserver/azurerm | 0.1.4 |
+| <a name="module_storage"></a> [storage](#module\_storage) | Azure/avm-res-storage-storageaccount/azurerm | 0.5.0 |
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [azurerm_container_app_environment.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment) | resource |
+| [azurerm_container_app_environment_storage.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment_storage) | resource |
+| [azurerm_resource_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
+| [azurerm_user_assigned_identity.this](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) | resource |
+| [random_password.myadminpassword](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry) | This variable controls whether or not telemetry is enabled for the module.<br/>For more information see https://aka.ms/avm/telemetryinfo.<br/>If it is set to false, then no telemetry will be collected. | `bool` | `false` | no |
+| <a name="input_location"></a> [location](#input\_location) | Azure region where the resource should be deployed.<br/>If null, the location will be inferred from the resource group location. | `string` | `"eastus"` | no |
+| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Azure Subscription ID | `string` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Custom tags to apply to the resource. | `map(string)` | `null` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_n8n_fqdn_url"></a> [n8n\_fqdn\_url](#output\_n8n\_fqdn\_url) | https url that contains ingress's fqdn, could be used to access the n8n app. |
+| <a name="output_openai_api_version"></a> [openai\_api\_version](#output\_openai\_api\_version) | The version of the OpenAI API to n8n credential. See https://learn.microsoft.com/en-us/azure/ai-services/openai/api-version-deprecation |
+| <a name="output_openai_deployment_name"></a> [openai\_deployment\_name](#output\_openai\_deployment\_name) | The name of the OpenAI deployment. |
+| <a name="output_openai_endpoint"></a> [openai\_endpoint](#output\_openai\_endpoint) | https url that contains the openai api key secret in the key vault. |
+| <a name="output_openai_key_secret_url"></a> [openai\_key\_secret\_url](#output\_openai\_key\_secret\_url) | https url that contains the openai key secret in the key vault. |
+| <a name="output_openai_resource_name"></a> [openai\_resource\_name](#output\_openai\_resource\_name) | The name of the OpenAI deployment. |
+<!-- END_TF_DOCS -->
