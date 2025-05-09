@@ -13,6 +13,15 @@ variable "subscription_id" {
   type        = string
 }
 
+variable "deploy_mcp" {
+  type        = bool
+  default     = false
+  description = <<DESCRIPTION
+This variable controls whether or not the MCP container app is deployed.
+If it is set to true, then the MCP container app will be deployed.
+DESCRIPTION
+}
+
 variable "enable_telemetry" {
   type        = bool
   default     = false

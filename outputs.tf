@@ -1,6 +1,11 @@
 output "n8n_fqdn_url" {
   description = "https url that contains ingress's fqdn, could be used to access the n8n app."
-  value       = module.container_app.fqdn_url
+  value       = module.container_app_n8n.fqdn_url
+}
+
+output "mcp_endpoint_sse" {
+  description = "The sse endpoint of the MCP Server"
+  value       = "${module.container_app_mcp[0].fqdn_url}/sse"
 }
 
 output "openai_key_secret_url" {

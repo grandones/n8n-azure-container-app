@@ -1,7 +1,6 @@
 module "naming" {
   source  = "Azure/naming/azurerm"
   version = "0.4.0"
-  suffix  = ["n8n"]
 }
 
 resource "azurerm_resource_group" "this" {

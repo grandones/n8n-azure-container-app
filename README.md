@@ -4,6 +4,7 @@ This Terraform configuration deploys an **n8n** instance on **Azure Container Ap
  
 ### Key Features:
 - **n8n Workflow Automation**: Deploys n8n, a powerful workflow automation tool, in a highly available and scalable environment using Azure Container Apps.
+- **Optional Azure MCP Server Container**: Optionally deploys an additional container app integrated with MCP/Azure, providing Azure-specific context to the agent in n8n. This container app includes an NGINX instance configured as a reverse proxy to the MCP server, ensuring seamless communication and enhanced functionality.
 - **Azure OpenAI Integration**: Provisions an Azure OpenAI Service instance with the GPT-4o-mini model, enabling advanced AI capabilities for your workflows.
 - **Cost Optimization**: Utilizes Azure Container Apps to minimize costs compared to AKS, making it an ideal choice for small to medium-scale deployments.
 - **Secure Configuration**: Integrates with Azure Key Vault to securely manage sensitive information, such as API keys and secrets.
@@ -32,7 +33,8 @@ This repository was created to provide a more affordable and accessible way to h
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_container_app"></a> [container\_app](#module\_container\_app) | Azure/avm-res-app-containerapp/azurerm | 0.4.0 |
+| <a name="module_container_app_mcp"></a> [container\_app\_mcp](#module\_container\_app\_mcp) | Azure/avm-res-app-containerapp/azurerm | 0.4.0 |
+| <a name="module_container_app_n8n"></a> [container\_app\_n8n](#module\_container\_app\_n8n) | Azure/avm-res-app-containerapp/azurerm | 0.4.0 |
 | <a name="module_key_vault"></a> [key\_vault](#module\_key\_vault) | Azure/avm-res-keyvault-vault/azurerm | 0.10.0 |
 | <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | 0.4.0 |
 | <a name="module_openai"></a> [openai](#module\_openai) | Azure/avm-res-cognitiveservices-account/azurerm | 0.7.0 |
@@ -54,6 +56,7 @@ This repository was created to provide a more affordable and accessible way to h
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_deploy_mcp"></a> [deploy\_mcp](#input\_deploy\_mcp) | This variable controls whether or not the MCP container app is deployed.<br/>If it is set to true, then the MCP container app will be deployed. | `bool` | `false` | no |
 | <a name="input_enable_telemetry"></a> [enable\_telemetry](#input\_enable\_telemetry) | This variable controls whether or not telemetry is enabled for the module.<br/>For more information see https://aka.ms/avm/telemetryinfo.<br/>If it is set to false, then no telemetry will be collected. | `bool` | `false` | no |
 | <a name="input_location"></a> [location](#input\_location) | Azure region where the resource should be deployed.<br/>If null, the location will be inferred from the resource group location. | `string` | `"eastu2"` | no |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Azure Subscription ID | `string` | n/a | yes |
@@ -63,6 +66,7 @@ This repository was created to provide a more affordable and accessible way to h
 
 | Name | Description |
 |------|-------------|
+| <a name="output_mcp_endpoint_sse"></a> [mcp\_endpoint\_sse](#output\_mcp\_endpoint\_sse) | The sse endpoint of the MCP Server |
 | <a name="output_n8n_fqdn_url"></a> [n8n\_fqdn\_url](#output\_n8n\_fqdn\_url) | https url that contains ingress's fqdn, could be used to access the n8n app. |
 | <a name="output_openai_api_version"></a> [openai\_api\_version](#output\_openai\_api\_version) | The version of the OpenAI API to n8n credential. See https://learn.microsoft.com/en-us/azure/ai-services/openai/api-version-deprecation |
 | <a name="output_openai_deployment_name"></a> [openai\_deployment\_name](#output\_openai\_deployment\_name) | The name of the OpenAI deployment. |
