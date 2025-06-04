@@ -137,7 +137,7 @@ module "container_app_n8n" {
 }
 
 module "container_app_mcp" {
-  count   = var.deploy_mcp ? 1 : 0
+  count = var.deploy_mcp ? 1 : 0
 
   source  = "Azure/avm-res-app-containerapp/azurerm"
   version = "0.4.0"
@@ -163,7 +163,7 @@ module "container_app_mcp" {
             value = "sse"
           },
           {
-            name = "AZURE_MCP_INCLUDE_PRODUCTION_CREDENTIALS"
+            name  = "AZURE_MCP_INCLUDE_PRODUCTION_CREDENTIALS"
             value = "true"
           },
           {
@@ -174,7 +174,7 @@ module "container_app_mcp" {
             name  = "AZURE_CLIENT_ID"
             value = azurerm_user_assigned_identity.this.client_id
           }
-          ]
+        ]
       },
       {
         name   = "nginx"
