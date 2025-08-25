@@ -2,9 +2,9 @@ module "key_vault" {
   source  = "Azure/avm-res-keyvault-vault/azurerm"
   version = "0.10.0"
 
-  location                      = azurerm_resource_group.this.location
+  location                      = local.resource_group_location
   name                          = module.naming.key_vault.name_unique
-  resource_group_name           = azurerm_resource_group.this.name
+  resource_group_name           = local.resource_group_name
   enable_telemetry              = var.enable_telemetry
   public_network_access_enabled = true
   tags                          = var.tags

@@ -13,6 +13,12 @@ variable "subscription_id" {
   type        = string
 }
 
+variable "resource_group_name" {
+  description = "Name of an existing Resource Group to deploy into. If null, a new RG will be created."
+  type        = string
+  default     = null
+}
+
 variable "deploy_mcp" {
   type        = bool
   default     = false

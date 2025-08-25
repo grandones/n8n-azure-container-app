@@ -1,7 +1,7 @@
 resource "azurerm_container_app_environment" "this" {
-  location            = azurerm_resource_group.this.location
+  location            = local.resource_group_location
   name                = module.naming.container_app_environment.name_unique
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = local.resource_group_name
 }
 
 resource "azurerm_container_app_environment_storage" "this" {
@@ -18,7 +18,7 @@ module "container_app_n8n" {
   version = "0.4.0"
 
   name                                  = "${module.naming.container_app.name_unique}-n8n"
-  resource_group_name                   = azurerm_resource_group.this.name
+  resource_group_name                   = local.resource_group_name
   container_app_environment_resource_id = azurerm_container_app_environment.this.id
   enable_telemetry                      = var.enable_telemetry
   revision_mode                         = "Single"
@@ -143,7 +143,7 @@ module "container_app_mcp" {
   version = "0.4.0"
 
   name                                  = "${module.naming.container_app.name_unique}-mcp"
-  resource_group_name                   = azurerm_resource_group.this.name
+  resource_group_name                   = local.resource_group_name
   container_app_environment_resource_id = azurerm_container_app_environment.this.id
   enable_telemetry                      = var.enable_telemetry
   revision_mode                         = "Single"

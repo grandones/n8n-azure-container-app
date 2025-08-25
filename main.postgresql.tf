@@ -8,9 +8,9 @@ module "postgresql" {
   source  = "Azure/avm-res-dbforpostgresql-flexibleserver/azurerm"
   version = "0.1.4"
 
-  location                      = azurerm_resource_group.this.location
+  location                      = local.resource_group_location
   name                          = module.naming.postgresql_server.name_unique
-  resource_group_name           = azurerm_resource_group.this.name
+  resource_group_name           = local.resource_group_name
   administrator_login           = "psqladmin"
   administrator_password        = random_password.myadminpassword.result
   enable_telemetry              = var.enable_telemetry
