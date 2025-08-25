@@ -11,12 +11,11 @@ module "openai" {
   tags                = var.tags
 
   cognitive_deployments = {
-    "gpt-4o" = {
-      name = "gpt-4o"
+    "gpt-4.1" = {
+      name = "gpt-4.1"
       model = {
         format  = "OpenAI"
-        name    = "gpt-4o"
-        version = "2024-07-18"
+        name    = "gpt-4.1"
       }
       scale = {
         type     = "GlobalStandard"
