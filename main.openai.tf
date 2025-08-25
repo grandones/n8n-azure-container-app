@@ -2,9 +2,9 @@ module "openai" {
   source  = "Azure/avm-res-cognitiveservices-account/azurerm"
   version = "0.7.0"
 
-  location            = azurerm_resource_group.this.location
+  location            = local.resource_group_location
   name                = module.naming.cognitive_account.name_unique
-  resource_group_name = azurerm_resource_group.this.name
+  resource_group_name = local.resource_group_name
   enable_telemetry    = var.enable_telemetry
   kind                = "OpenAI"
   sku_name            = "S0"
