@@ -25,7 +25,7 @@ output "openai_resource_name" {
 
 output "openai_deployment_name" {
   description = "The name of the OpenAI deployment."
-  value       = module.openai.resource_cognitive_deployment["gpt-4o-mini"].name
+  value       = module.openai.resource_cognitive_deployment["gpt-5"].name
 }
 
 output "openai_api_version" {
