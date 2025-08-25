@@ -25,11 +25,11 @@ output "openai_resource_name" {
 
 output "openai_deployment_name" {
   description = "The name of the OpenAI deployment."
-  value       = module.openai.resource_cognitive_deployment["gpt-5"].name
+  value       = module.openai.resource_cognitive_deployment["gpt-4o"].name
 }
 
 output "openai_api_version" {
   description = "The version of the OpenAI API to n8n credential. See https://learn.microsoft.com/en-us/azure/ai-services/openai/api-version-deprecation"
-  value       = "2025-03-01-preview"
+  value       = "2024-07-18"
 }
 

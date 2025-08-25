@@ -43,3 +43,9 @@ variable "tags" {
   default     = null
   description = "Custom tags to apply to the resource."
 }
+
+variable "postgres_zone" {
+  description = "Availability Zone for PostgreSQL Flexible Server (\"1\", \"2\", or \"3\"). Set null to let Azure choose automatically."
+  type        = string
+  default     = null
+}

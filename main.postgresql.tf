@@ -19,7 +19,7 @@ module "postgresql" {
   server_version                = 16
   sku_name                      = "B_Standard_B1ms"
   tags                          = var.tags
-  zone                          = 1
+  zone                          = var.postgres_zone
 
   databases = {
     n8n = {
