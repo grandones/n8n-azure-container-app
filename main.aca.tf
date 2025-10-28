@@ -88,6 +88,14 @@ module "container_app_n8n" {
           {
             name  = "APPSETTING_WEBSITE_SITE_NAME"
             value = "azcli-workaround"
+          },
+          {
+            name  = "GENERIC_TIMEZONE"
+            value = "Europe/Brussels"
+          },
+          {
+            name  = "TZ"
+            value = "Europe/Brussels"
           }
         ]
 

@@ -1,6 +1,6 @@
 variable "location" {
   type        = string
-  default     = "eastu2"
+  default     = "eastus2"
   description = <<DESCRIPTION
 Azure region where the resource should be deployed.
 If null, the location will be inferred from the resource group location.
