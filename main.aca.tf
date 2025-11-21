@@ -96,6 +96,10 @@ module "container_app_n8n" {
           {
             name  = "TZ"
             value = "Europe/Brussels"
+          },
+          {
+            name  = "N8N_PROXY_HOPS"
+            value = "1"
           }
         ]
 
@@ -113,7 +117,7 @@ module "container_app_n8n" {
               path = "/healthz"
               port = 5678
             }
-            initial_delay_seconds = 120
+            initial_delay_seconds = 60
             period_seconds        = 10
           },
           {
