@@ -28,8 +28,8 @@ module "container_app_n8n" {
     containers = [
       {
         name   = "n8n"
-        memory = "0.5Gi"
-        cpu    = 0.25
+        memory = "1.5Gi"
+        cpu    = 0.75
         image  = "docker.io/n8nio/n8n:latest"
 
         env = [
@@ -103,6 +103,27 @@ module "container_app_n8n" {
           {
             name = "n8nconfig"
             path = "/home/node/.n8n"
+          }
+        ]
+
+        probes = [
+          {
+            type = "Liveness"
+            http_get = {
+              path = "/healthz"
+              port = 5678
+            }
+            initial_delay_seconds = 120
+            period_seconds        = 10
+          },
+          {
+            type = "Readiness"
+            http_get = {
+              path = "/healthz"
+              port = 5678
+            }
+            initial_delay_seconds = 10
+            period_seconds        = 10
           }
         ]
       }
