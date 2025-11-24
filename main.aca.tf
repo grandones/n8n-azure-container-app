@@ -25,6 +25,7 @@ module "container_app_n8n" {
   tags                                  = var.tags
 
   template = {
+    min_replicas = 1
     containers = [
       {
         name   = "n8n"
